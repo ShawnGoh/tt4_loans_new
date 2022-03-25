@@ -16,7 +16,7 @@ router = APIRouter(
 def login(user_creds:OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
     access = ""
     if user_creds.username =="admin":
-        token = oauth2.create_access_token(data={"user_id":int(user_creds.password), "role": "admin"})
+        token = oauth2.create_access_token(data={"jwtpayload":{"customer_id": int(user_creds.password), "role": "user"}})
         access="admin"
     # create token
     else:
