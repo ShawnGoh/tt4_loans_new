@@ -19,7 +19,7 @@ def login(user_creds:OAuth2PasswordRequestForm = Depends(), db: Session = Depend
         token = oauth2.create_access_token(data={"user_id":int(user_creds.password), "role": "admin"})
         access="admin"
     # create token
-     else:
+    else:
         token = oauth2.create_access_token(data={"jwtpayload":{"customer_id": int(user_creds.password), "role": "user"}})
         access="user"
     # return token
